@@ -10,7 +10,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/testdb';
 
 // Middleware
 app.use(cors());
@@ -22,7 +22,7 @@ app.use('/students', studentRoutes);
 app.use('/upload', uploadRoutes);
 
 // Connect to MongoDB
-connectDB(MONGODB_URI);
+await connectDB(MONGODB_URI);
 
 app.get('/', (req,res)=>{
   res.send('Server is connected')
