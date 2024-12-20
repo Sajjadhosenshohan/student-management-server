@@ -10,6 +10,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+const mongoUri = process.env.MONGODB_URI || "mongodb://localhost:27017/studentDB";
 
 // Middleware
 app.use(
@@ -28,13 +29,16 @@ app.use("/auth", authRoutes);
 app.use("/students", studentRoutes);
 app.use("/upload", uploadRoutes);
 
+console.log("MONGODB_URI check:", process.env.MONGODB_URI);
 // Database connection
+
 mongoose
-  .connect(process.env.MONGODB_URI, {
+  .connect(mongoUri, {
     serverSelectionTimeoutMS: 5000,
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
+
 
 app.get("/", (req, res) => {
   res.send("Server is connected");
