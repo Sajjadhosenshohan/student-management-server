@@ -9,7 +9,7 @@ import {
 
 const router = express.Router();
 
-router.use(authenticateToken);
+// router.use(authenticateToken);
 
 router.post('/', createStudent);
 router.get('/', getStudents);
