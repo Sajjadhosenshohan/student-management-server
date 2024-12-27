@@ -10,14 +10,14 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
-const mongoUri = process.env.MONGODB_URI || "mongodb://localhost:27017/studentDB";
+const mongoUri =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/studentDB";
+
+//comment for branch initialization
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173"
-
-    ],
+    origin: ["http://localhost:5173"],
     credentials: true,
   })
 );
@@ -37,7 +37,6 @@ mongoose
   })
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("MongoDB connection error:", err));
-
 
 app.get("/", (req, res) => {
   res.send("Server is connected");
