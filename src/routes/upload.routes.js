@@ -1,14 +1,14 @@
 import express from "express";
-// import multer from "multer";
+import multer from "multer";
 import { authenticateToken } from "../middleware/auth.middleware.js";
-import { uploadPDF } from "../controllers/upload.controller.js";
-import { upload } from "../config/storage.config.js";
+import { uploadPDFv3 } from "../controllers/upload.controller.js";
 
 const router = express.Router();
-// const upload = multer({ dest: 'uploads/' });
+// const upload = multer({ dest: "uploads/" });
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 router.use(authenticateToken);
-// router.post('/', upload.single('file'), uploadPDF);
-router.post("/", upload.single("file"), uploadPDF);
+router.post("/", upload.single("file"), uploadPDFv3);
 
 export default router;

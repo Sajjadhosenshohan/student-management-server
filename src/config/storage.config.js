@@ -7,7 +7,7 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: "RPI", // The folder name in Cloudinary where images will be stored
-    format: async (req, file) => "pdf", // Supports promises as well
+    allowedFormats: ["pdf"],
     public_id: (req, file) => `${Date.now()}-${file.originalname}`, // File name to be used
   },
 });
